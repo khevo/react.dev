@@ -20,8 +20,8 @@ jobs:
         run: yarn build && yarn next export
 
       - name: Deploy to S3
-        run: aws s3 sync out s3://reactgit --delete
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AKIAW3MEFC5CNMCXPR3N }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.lv6TVy00S3llM10yNHt1S1Ki5noyyZ9aRGZL/jcZ3N }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "us-east-1"
+        run: aws s3 sync out s3://reactgit --delete
