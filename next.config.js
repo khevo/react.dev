@@ -6,6 +6,10 @@
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
+  images: {
+    unoptimized: true, // 👈 Add this line to disable image optimization
+  },
+  output: 'export', //just added this line so i can run build cmd
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
   experimental: {
