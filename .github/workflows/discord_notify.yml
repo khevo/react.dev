@@ -24,7 +24,7 @@ jobs:
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v6.0.0
         with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+            if: false
           embed-author-name: ${{ github.event.pull_request.user.login }}
           embed-author-url: ${{ github.event.pull_request.user.html_url }}
           embed-author-icon-url: ${{ github.event.pull_request.user.avatar_url }}

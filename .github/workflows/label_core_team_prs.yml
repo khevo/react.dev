@@ -3,32 +3,34 @@ name: Label Core Team PRs
 on:
   pull_request:
 
-permissions: {}
+permissions:
+  contents: read  # Allows reading repo content
+  pull-requests: write  # Allows adding labels to PRs
+  issues: write  # Allows adding labels to issues
 
 env:
   TZ: /usr/share/zoneinfo/America/Los_Angeles
-  # https://github.com/actions/cache/blob/main/tips-and-workarounds.md#cache-segment-restore-timeout
-  SEGMENT_DOWNLOAD_TIMEOUT_MINS: 1
-
+  defaults:
+    run:
+      shell: bash
 jobs:
   check_maintainer:
     uses: facebook/react/.github/workflows/shared_check_maintainer.yml@main
     permissions:
-      # Used by check_maintainer
-      contents: read
+      contents: read  # Required for check_maintainer
     with:
       actor: ${{ github.event.pull_request.user.login }}
       is_remote: true
+    outputs:
+      is_core_team: ${{ steps.check.outputs.is_core_team }}
 
   label:
+    needs: check_maintainer
     if: ${{ needs.check_maintainer.outputs.is_core_team == 'true' }}
     runs-on: ubuntu-latest
-    needs: check_maintainer
     permissions:
-      # Used to add labels on issues
-      issues: write
-      # Used to add labels on PRs
-      pull-requests: write
+      issues: write  # Allows adding labels on issues
+      pull-requests: write  # Allows adding labels on PRs
     steps:
       - name: Label PR as React Core Team
         uses: actions/github-script@v7
@@ -37,6 +39,6 @@ jobs:
             github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: ${{ github.event.number }},
+              issue_number: ${{ github.event.pull_request.number }},
               labels: ['React Core Team']
-            });
+            })
