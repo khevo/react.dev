@@ -21,13 +21,12 @@ jobs:
     with:
       actor: ${{ github.event.pull_request.user.login }}
       is_remote: true
-    outputs:
-      is_core_team: ${{ steps.check.outputs.is_core_team }}
+    secrets: inherit
 
   label:
     needs: check_maintainer
     if: ${{ needs.check_maintainer.outputs.is_core_team == 'true' }}
-    runs-on: ubuntu-latest
+    if: ${{ needs.check_maintainer.result == 'true' }}
     permissions:
       issues: write  # Allows adding labels on issues
       pull-requests: write  # Allows adding labels on PRs
