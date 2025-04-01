@@ -17,7 +17,7 @@ jobs:
         run: yarn install
 
       - name: Build Project
-        run: yarn build && yarn next export
+        run: yarn build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
