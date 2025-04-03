@@ -133,7 +133,7 @@ export function HomeContent() {
             )}
           />
           <h1 className="uwu-hidden text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
-            React
+            DevSecOps
           </h1>
           <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
             The library for web and native user interfaces
@@ -145,7 +145,7 @@ export function HomeContent() {
               size="lg"
               className="w-full sm:w-auto justify-center"
               label="Learn React">
-              Learn React
+              Learn Devops
             </ButtonLink>
             <ButtonLink
               href={'/reference/react'}
@@ -153,7 +153,7 @@ export function HomeContent() {
               size="lg"
               className="w-full sm:w-auto justify-center"
               label="API Reference">
-              API Reference
+              API for Developers
             </ButtonLink>
           </div>
         </div>
