@@ -144,8 +144,8 @@ export function HomeContent() {
               type="primary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Learn DevOps">
-              Learn DevOps
+              label="Learn React">
+              Learn Reactive
             </ButtonLink>
             <ButtonLink
               href={'/reference/react'}
