@@ -31,3 +31,10 @@ jobs:
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+
+      - name: Notify via SNS Email
+        run: |
+          aws sns publish \
+            --topic-arn arn:aws:sns:us-east-1:471112947524:NewGitCommit \
+            --subject "New Version of React App Deployed" \
+            --message "Latest commit has been successfully deployed to S3 and CloudFront cache was invalidated, test if Application is running properly!"
